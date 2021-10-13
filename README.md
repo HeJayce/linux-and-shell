@@ -69,11 +69,113 @@ unset name
 
 与其他编程语言类似，shell有三种变量类型
 
-1. 
+1. **局部变量** 局部变量在脚本或命令中定义，仅在当前shell实例中有效，其他shell启动的程序不能访问局部变量。
+2. **环境变量** 所有的程序，包括shell启动的程序，都能访问环境变量，有些程序需要环境变量来保证其正常运行。必要的时候shell脚本也可以定义环境变量。
+3. **shell变量** shell变量是由shell程序设置的特殊变量。shell变量中有一部分是环境变量，有一部分是局部变量，这些变量保证了shell的正常运行
+
+
+
+#### shell字符串
+
+在定义字符串的时候，有三种方法
+
+- 单引号
+  - 单引号中任何字符都可以原样输出，不可嵌套变量
+  - 单引号中不可单独出现单独的单引号，转义也不行，但成对可以
+- 双引号
+  - 双引号可以有变量
+  - 双引号可出现转义字符
+- 不用引号
+
+
+
+##### 拼接字符串
+
+- 双引号
+```sh
+  your_name="Jayce"
+  greeting="hello, "$your_name" !"
+  greeting_1="hello, ${your_name} !"
+  echo $greeting  $greeting_1
+  #输出 hello, Jayce ! hello, Jayce !
+```
+
+- 单引号
+
+```sh
+  greeting_2='hello, '$your_name' !'
+  greeting_3='hello, ${your_name} !'
+  echo $greeting_2  $greeting_3
+  #输出 hello, Jayce ! hello, ${your_name} !
+```
+
+其中greeting_2中的变量其实并没有在单引号内
+
+greeting_3中的变量未生效，被当做了字符串
+
+[]()
+
+##### 获取字符串长度
+
+`${#val_name}`
+
+在变量名前加上`#`
+
+##### 提取子字符串
+
+`${val_name:1:4}`
+
+注意：索引值从0开始
+
+##### 查找字符串
+
+查找字符 **i** 或 **o** 的位置(哪个字母先出现就计算哪个)：
+
+```sh
+string="runoob is a great site"
+echo `expr index "$string" io` 
+# 输出 4
+```
+
+[expr命令](#expr)
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### <span id="expr">expr</span>
 
 #### `&&` 与`;`顺序执行
 
