@@ -6,3 +6,5 @@ echo "${array_a[3]}"
 
 length=${#array_a[*]}
 echo ${length}
+
+

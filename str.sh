@@ -10,5 +10,7 @@ greeting_3='hello, ${your_name} !'
 echo ${your_name:1:4}
 echo ${#greeting_2}  $greeting_3
 echo ${your_name:0-2:1}
-read -r "asd" num 
-echo ${num}
+
+
+variable=$(ifconfig)
+echo $variable
