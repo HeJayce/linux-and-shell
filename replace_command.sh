@@ -12,3 +12,8 @@ echo "Begin time: $begin_time"
 echo "Finish time: $finish_time"
 echo $(($finish_time-$begin_time))
 
+
+alias timestamp='date +%s'
+#可代替时间戳
+timeNowLocal=`timestamp`
+echo "${timeNowLocal}"

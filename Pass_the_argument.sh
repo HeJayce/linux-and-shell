@@ -10,7 +10,7 @@ function func(){
     echo "URL: $2"
     echo "First Parameter : $1"
     echo "Second Parameter : $2"
-    echo "All parameters 1: $@"
+    # echo "All parameters 1: $@"
     echo "All parameters 2: $*"
     echo "Total: $#"
 }
@@ -21,4 +21,7 @@ function add(){
     return $(($1+$2))
 }
 add 21 21
+echo $?
+
+cat ping.sh
 echo $?
