@@ -15,7 +15,7 @@ date=$(date +%Y)
 source="/egova/apache-tomcat-7.0.105/logs/catalina.${date}".out
 echo ${source}
 
-echox $dest
+echo $dest
 
 # filename="/egova/apache-tomcat-7.0.105/logs/catalina.${filename}".out
 # dest=
@@ -44,30 +44,30 @@ then
     dest=${source}
 fi
  
-echox "method:"${method}
-echox "source:"${source}
-echox "dest:"${dest}
+echo "method:"${method}
+echo "source:"${source}
+echo "dest:"${dest}
  
 #校验参数是否为空
 if test -z "${method}" || test -z "${source}" || test -z "${dest}"
 then
-    echox $0 put localfile objectname
-    echox $0 get objectname localfile
+    echo $0 put localfile objectname
+    echo $0 get objectname localfile
     exit -1
 fi
-echox "${method}"x
-echox "PUT"x
+echo "${method}"x
+echo "PUT"x
 if [ "${method}"x = "PUT"x ]
 then
     resource="/${bucket}/${dest}"
     contentType=$(file -ib ${source} |awk -F ";" '{print $1}')
     dateValue="$(TZ=GMT date +'%a, %d %b %Y %H:%M:%S GMT')"
     stringToSign="${method}\n\n${contentType}\n${dateValue}\n${resource}"
-    signature=$(echox -en $stringToSign | openssl sha1 -hmac ${Key} -binary | base64)
-    echox $stringToSign
-    echox $signature
+    signature=$(echo -en $stringToSign | openssl sha1 -hmac ${Key} -binary | base64)
+    echo $stringToSign
+    echo $signature
     url=http://${osshost}/${dest}
-    echox "upload ${source} to ${url}"
+    echo "upload ${source} to ${url}"
     curl -i -q -X PUT -T "${source}" \
       -H "Host: ${osshost}" \
       -H "Date: ${dateValue}" \
@@ -79,9 +79,9 @@ else
     contentType=""
     dateValue="$(TZ=GMT date +'%a, %d %b %Y %H:%M:%S GMT')"
     stringToSign="${method}\n\n${contentType}\n${dateValue}\n${resource}"
-    signature=$(echox -en ${stringToSign} | openssl sha1 -hmac ${Key} -binary | base64)
+    signature=$(echo -en ${stringToSign} | openssl sha1 -hmac ${Key} -binary | base64)
     url=http://${osshost}/${source}
-    echox "download ${url} to ${dest}"
+    echo "download ${url} to ${dest}"
     curl --create-dirs \
       -H "Host: ${osshost}" \
       -H "Date: ${dateValue}" \
