@@ -1,8 +1,7 @@
 #!/bin/bash
 host="oss-cn-hangzhou.aliyuncs.com"
 bucket="elawlog"
-Id="LTAI5tDPqxXCvk5BvbnEofZT"
-Key="2JLlQZXaWS5iVSlGKCI0yrSfMib24d"
+
 
 # bucket="bucket名"
 # Id="AccessKey ID"
