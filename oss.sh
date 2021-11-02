@@ -1,7 +1,6 @@
 #!/bin/bash
 host="oss-cn-hangzhou.aliyuncs.com"
 bucket="elawlog"
-
 # bucket="bucket名"
 # Id="AccessKey ID"
 # Key="Access Key Secret"
@@ -11,14 +10,10 @@ bucket="elawlog"
 method=$1
 source=$2
 dest=$3
-
 echo $dest
-
 # filename="/egova/apache-tomcat-7.0.105/logs/catalina.${filename}".out
 # dest=
-
-osshost=${bucket}.${host}
- 
+osshost=${bucket}.${host} 
 # 校验method
 if test -z "${method}"
 then
@@ -40,11 +35,9 @@ if test -z "${dest}"
 then
     dest=${source}
 fi
- 
 echo "method:"${method}
 echo "source:"${source}
 echo "dest:"${dest}
- 
 #校验参数是否为空
 if test -z "${method}" || test -z "${source}" || test -z "${dest}"
 then
