@@ -1,7 +1,10 @@
 #!/bin/sh
 tomcatpid () {
-    tomcat_id1=$(ps -ef | grep /egova/apache-tomcat-7.0.105/conf/logging.properties |  grep -v "grep" | awk '{print $2}')
+    # tomcat_id1=$(ps -ef | grep /egova/apache-tomcat-7.0.105/conf/logging.properties |  grep -v "grep" | awk '{print $2}')
+    tomcat_id1=$(ps -ef | grep /egova/tomcat/conf/logging.properties |  grep -v "grep" | awk '{print $2}')
     tomcat_id2=$(ps -ef | grep /egova/apache-tomcat-7.0.64/conf/logging.properties |  grep -v "grep" | awk '{print $2}')
+    # awk '{print $2}'只保留进程号
+    # grep -v "grep" 过滤查询
     if [ $tomcat_id1 ]; then
         tomcat_id=${tomcat_id1}
         id=105
@@ -19,17 +22,17 @@ tomcatpid () {
 }
 tomcatpid
 echo $tomcat_id
-kill -9 ${tomcat_id}
+# kill -9 ${tomcat_id}
 tomcatpid
 if [ ! $tomcat_id ]; then
-    echo "success"
+    echo "kill success"
     if ((${id}==64)); then
         bash /egova/apache-tomcat-7.0.64/bin/startup.sh
     else
         bash /egova/apache-tomcat-7.0.105/bin/startup.sh
     fi
-    
-    bash /egova/apache-tomcat-7.0.64/bin/startup.sh
+else 
+    echo "kill fail"
 fi
-echo "killed ${tomcat_id}"
+# echo "killed ${tomcat_id}"
 
