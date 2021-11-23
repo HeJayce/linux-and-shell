@@ -30,8 +30,10 @@ if [ ! $tomcat_id ]; then
     if ((${id}==108)); then
         bash /egova/apache-tomcat-7.0.108/bin/startup.sh
         echo "tomcat启动108版本"
-    # else
-        # bash /egova/apache-tomcat-7.0.105/bin/startup.sh
+    elif ((${id}==105));then
+        bash /egova/apache-tomcat-7.0.105/bin/startup.sh
+    else
+        echo "tomcat 无使用版本"
     fi
 else
     echo "kill fail"
