@@ -1,14 +1,29 @@
 #!/bin/bash 
 start(){
-    echo -n "输入1开启临时，输入2永久开启:"
-    read argument 
-    if ((${argument}==1)); then
-        source oncestart.sh
-    elif ((${argument}==2)); then
-        source alwaysstart.sh
-    else 
-        echo  "输入错误,自动退出"
+    pid=$(ps -ef | grep frpc |  grep -v "grep" | awk '{print $2}')
+    if [ $pid ]; then
+        echo "frp 已经在运行，是否重启？"
+        echo "1.重启 按任意键退出"
+        read frp_restart
+        if (($frp_restart==1)); then
+            echo frp_restart
+            kill -9 $pid
+            start
+        else
+            echo "已退出"
+        fi
+    else
+        echo -n "输入1开启临时，输入2永久开启:"
+        read argument 
+        if ((${argument}==1)); then
+            source oncestart.sh
+        elif ((${argument}==2)); then
+            source alwaystart.sh
+        else 
+            echo  "输入错误,自动退出"
+        fi
     fi
+    
 }
 stop (){
     pid=$(ps -ef | grep frpc |  grep -v "grep" | awk '{print $2}')
