@@ -2,7 +2,7 @@
 start(){
     pid=$(ps -ef | grep frpc |  grep -v "grep" | awk '{print $2}')
     if [ $pid ]; then
-        echo "frp 已经在运行，是否重启？"
+        echo "frp 已经在运行,是否重启?"
         echo "1.重启 按任意键退出"
         read frp_restart
         if (($frp_restart==1)); then
@@ -13,7 +13,7 @@ start(){
             echo "已退出"
         fi
     else
-        echo -n "输入1开启临时，输入2永久开启:"
+        echo -n "输入1开启临时,输入2永久开启:"
         read argument 
         if ((${argument}==1)); then
             source oncestart.sh
@@ -34,7 +34,7 @@ stop (){
     fi
 }
 echo "frp启动脚本:"
-echo "请输入你想进行的操作：1启动，2停止"
+echo "请输入你想进行的操作:1启动,2停止"
 read status 
 if ((${status}==1)); then
     start

@@ -5,9 +5,9 @@ bucket="elawlog"
 # bucket="bucket名"
 # Id="AccessKey ID"
 # Key="Access Key Secret"
-# 参数1，PUT：上传，GET：下载
-# 参数2，上传时为本地源文件路径，下载时为oss源文件路径
-# 参数3，上传时为OSS目标文件路径，下载时为本地目标文件路径
+# 参数1,PUT:上传,GET:下载
+# 参数2,上传时为本地源文件路径,下载时为oss源文件路径
+# 参数3,上传时为OSS目标文件路径,下载时为本地目标文件路径
 method=$1
 source=$2
 dest=$3
