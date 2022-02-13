@@ -2,7 +2,7 @@
 
 学习脚本编程
 
-# shell用途
+## shell用途
 
 实现自动化
 
@@ -15,9 +15,9 @@
 7. 自动化信息采集，监控（收集系统/应用状态信息，CPU，内存，disk，apache，Mysql，tcp状态）Zabbix专业软件可实现采集
 8. 自动化扩容（增加云主机-->部署应用）通过监控
 
-# shell语法
 
-## shell打印
+
+## shell 打印
 
 ### echo
 
@@ -75,6 +75,158 @@ printf "%-10s %-8s %-4.2f\n" 郭芙 女 47.9876
 | \r   | 回车         |
 | \t   | 水平输出退格 |
 | \v   | 垂直输出退格 |
+
+
+
+## 文件描述符与重定向
+
+### 文件描述符
+
+文件描述符是与输入和输出流相关联的整数。常用的文件描述符是stdin、stdout和stderr
+
+- 0 —— stdin（标准输入）
+- 1 —— stdout（标准输出）
+- 2 —— stderr（标准错误）
+
+
+
+### 重定向
+
+Linux Shell 重定向分为两种，一种输入重定向，一种是输出重定向；
+
+- 输入方向就是数据从哪里流向程序。数据默认从键盘流向程序，如果改变了它的方向，数据就从其它地方流入，这就是输入重定向。
+
+- 输出方向就是数据从程序流向哪里。数据默认从程序流向显示器，如果改变了它的方向，数据就流向其它地方，这就是输出重定向。
+
+<table>
+<caption>
+表2：Bash 支持的输出重定向符号</caption>
+<tbody>
+<tr>
+<tr>
+<th>
+类&nbsp;型</th>
+<th>
+符&nbsp;号</th>
+<th>
+作&nbsp;用</th>
+</tr>
+<tr>
+<td rowspan="2">
+标准输出重定向</td>
+<td>
+cmd&nbsp;&gt;file</td>
+<td>
+以覆盖的方式，把 cmd 的正确输出结果输出到 file&nbsp;文件中。</td>
+</tr>
+<tr>
+<td>
+cmd &gt;&gt;file</td>
+<td>
+以追加的方式，把 cmd 的正确输出结果输出到 file&nbsp;文件中。</td>
+</tr>
+<tr>
+<td rowspan="2">
+标准错误输出重定向</td>
+<td>
+cmd 2&gt;file</td>
+<td>
+以覆盖的方式，把 cmd 的错误信息输出到 file&nbsp;文件中。</td>
+</tr>
+<tr>
+<td>
+cmd 2&gt;&gt;file</td>
+<td>
+以追加的方式，把 cmd&nbsp;的错误信息输出到 file&nbsp;文件中。</td>
+</tr>
+<tr>
+<td colspan="1" rowspan="6">
+正确输出和错误信息同时保存</td>
+<td>
+cmd &gt;file&nbsp;2&gt;&amp;1</td>
+<td>
+以覆盖的方式，把正确输出和错误信息同时保存到同一个文件（file）中。</td>
+</tr>
+<tr>
+<td>
+cmd &gt;&gt;file&nbsp;2&gt;&amp;1</td>
+<td>
+以追加的方式，把正确输出和错误信息同时保存到同一个文件（file）中。</td>
+</tr>
+<tr>
+<td>
+cmd &gt;file1 2&gt;file2</td>
+<td>
+以覆盖的方式，把正确的输出结果输出到 file1 文件中，把错误信息输出到 file2 文件中。</td>
+</tr>
+<tr>
+<td>
+cmd &gt;&gt;file1&nbsp; 2&gt;&gt;file2</td>
+<td>
+以追加的方式，把正确的输出结果输出到 file1 文件中，把错误信息输出到 file2 文件中。</td>
+</tr>
+<tr>
+<td>
+cmd &gt;file 2&gt;file</td>
+<td colspan="1" rowspan="2">
+【<span><b>不推荐</b></span>】这两种写法会导致 file 被打开两次，引起资源竞争，所以 stdout 和 stderr 会互相覆盖</td>
+</tr>
+<tr>
+<td>
+cmd &gt;&gt;file 2&gt;&gt;file</td>
+</tr>
+</tbody>
+</table>
+
+例如：
+
+```shell
+#标准输出
+echo ‘helllo world’ > hello.txt
+echo ‘helllo world’ >> hello.txt
+   #结果
+#‘helllo world’
+#‘helllo world’
+
+```
+
+```shell
+#标准错误输出重定向
+cd sh 2> error.log
+cd shell 2>> error.log
+   #结果
+#-bash: cd: sh: No such file or directory
+#-bash: cd: shell: No such file or directory
+
+```
+
+```shell
+#正确输出和错误信息同时保存
+#同一文件
+cat 1.txt > out.log 2>&1
+    #结果
+#cat: 1.txt: No such file or directory
+#hello
+
+#不同文件
+cat 1.txt > out.log 2>error.log
+```
+
+如果既想把`stdout`打印出终端，又想重定向至文件，就需要用到`tee`命令
+
+#### `tee`命令
+
+ tee命令用于读取标准输入的数据，并将其内容输出成文件
+
+```shell
+cat a* |tee  error.log 
+```
+
+![image-20220214020327514](https://jaycehe.oss-cn-hangzhou.aliyuncs.com/markdown/202202140203269.png)
+
+注意：tee只能读取stdin ，不能读取到stderr
+
+默认情况tee为覆盖文件，等同于`>` ，加入`-a` 参数为追加内容，类似于`>>`
 
 
 
