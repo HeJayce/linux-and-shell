@@ -222,7 +222,7 @@ cat 1.txt > out.log 2>error.log
 cat a* |tee  error.log 
 ```
 
-![image-20220214020327514](https://jaycehe.oss-cn-hangzhou.aliyuncs.com/markdown/202202140203269.png)
+![image-20220214021923090](https://jaycehe.oss-cn-hangzhou.aliyuncs.com/markdown/202202140219700.png)
 
 注意：tee只能读取stdin ，不能读取到stderr
 
