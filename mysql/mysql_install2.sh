@@ -18,5 +18,5 @@ fi
 if [ ! ${libaiostat} ]; then
     yum -y install numactl
 fi
-
+#未完
 
