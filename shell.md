@@ -1,3 +1,5 @@
+[TOC]
+
 # shell
 
 学习脚本编程
@@ -647,7 +649,12 @@ EOF
 如果参数个数太多，达到或者超过了 10 个，那么就得用`${n}`的形式来接收了，例如 ${10}、${23}。
 
 ```sh
-#!/bin/bashecho "Shell 传递参数实例！";echo "执行的文件名：$0";echo "第一个参数为：$1";echo "第二个参数为：$2";echo "第三个参数为：$3";
+#!/bin/bash
+echo "Shell 传递参数实例！";
+echo "执行的文件名：$0";
+echo "第一个参数为：$1";
+echo "第二个参数为：$2";
+echo "第三个参数为：$3";
 ```
 
 ![image-20211014102022836](C:\Users\MyPC\OneDrive\shell\shell.assets\202110141020304.png)
@@ -758,7 +765,20 @@ test实例：
 实例：
 
 ```sh
-#!/bin/bashread str1read str2#检测字符串是否为空if [ -z "$str1" ] || [ -z "$str2" ]then    echo "字符串不能为空"    exit 0fi#比较字符串if [ $str1 = $str2 ]then    echo "两个字符串相等"else    echo "两个字符串不相等"fi
+#!/bin/bash
+read str1
+read str2
+#检测字符串是否为空
+if [ -z "$str1" ] || [ -z "$str2" ]then
+	echo "字符串不能为空"   
+	exit 0
+fi
+#比较字符串
+if [ $str1 = $str2 ]then    
+	echo "两个字符串相等"
+else   
+	echo "两个字符串不相等"
+fi
 ```
 
 
@@ -777,6 +797,80 @@ test实例：
 
 
 
+## case when
+
+与switch case类似
+
+语法：
+
+```shell
+case "${value}" in
+    1)
+        echo "item = 1"
+    ;;
+    2|3)
+        echo "item = 2 or item = 3"
+    ;;
+    *)
+        echo "default (none of above)"
+    ;;
+esac
+```
+
+
+
+## for循环
+
+```shell
+for var in item1 item2 ... itemN
+do
+    command1
+    command2
+    ...
+    commandN
+done
+```
+
+无限循环：
+
+```
+for (( ; ; ))
+```
+
+
+
+## while
+
+语法：
+
+```shell
+while condition
+do
+    command
+done
+
+i=1
+while [ $i -le 5 ] ; do
+   echo 'text here'
+   let  "i++"
+   echo $i
+done
+```
+
+无限循环：
+
+```shell
+while :
+# while true
+do
+    command
+done
+```
+
+
+
+
+
 ## 命令替换
 
 将命令输出结果赋值给变量
@@ -791,8 +885,14 @@ $() 仅在 Bash Shell 中有效，而反引号可在多种 Shell 中使用
 
 如果被替换的命令的输出内容包括多行（也即有换行符），或者含有多个连续的空白符，那么在输出变量时应该将变量**用双引号包围**
 
-```sh
-#!/bin/bashLSL=`ls -l`echo $LSL  #不使用双引号包围echo "--------------------------"  #输出分隔符echo "$LSL"  #使用引号包围
+```shell
+#!/bin/bash
+LSL=`ls -l`
+echo $LSL  
+#不使用双引号包围
+echo "--------------------------"  
+#输出分隔符
+echo "$LSL"  #使用引号包围
 ```
 
 第一句不换行，第三句正常换行
