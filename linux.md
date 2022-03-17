@@ -852,7 +852,7 @@ grep -C 3 bash oss.sh
 
   以%为分隔符，截取百分号前面的数值 -f 取截取后的第一行
 
-  
+  ​	
 
 
 
@@ -880,3 +880,26 @@ ps -ef|grep sshd|awk 'BEGIN{printf "输出进程号\n"} {print $2}'
 
 ![image-20220122172009408](https://jaycehe.oss-cn-hangzhou.aliyuncs.com/markdown/202201221720695.png)
 
+如果没有BEGIN，则输出为
+
+![image-20220317105404238](https://jaycehe.oss-cn-hangzhou.aliyuncs.com/markdown/202203171054281.png)
+
+由此可见，BEGIN后的第一行是默认直接读取一次，不影响后面。
+
+##### END
+
+与BEGIN类似，读取最后一行
+
+
+
+指定分隔符截取：
+
+FS：输入分隔符
+
+OFS：输出分隔符
+
+```
+awk 'BEGIN{FS="|";OFS="|"}{print $1,$2,$3,$4}' informix.txt
+```
+
+![image-20220317111917170](https://jaycehe.oss-cn-hangzhou.aliyuncs.com/markdown/202203171119258.png)

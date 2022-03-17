@@ -1,5 +1,5 @@
 #!/bin/bash
-echo '随便输'`
+echo '随便输'
 read value
 case "${value}" in
     1)
