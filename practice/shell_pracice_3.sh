@@ -39,7 +39,7 @@ while true; do
     cpu=$(cpu)
     mem=$(mem)
     log=$(log)
-    # disk=$(disk)
+    disk=$(disk)
     echo cpu=${cpu}
     echo mem=${mem}
     echo log=${log}
