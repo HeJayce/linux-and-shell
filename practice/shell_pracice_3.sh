@@ -66,5 +66,5 @@ while true; do
       if [ $log = 'true' ]; then
          echo $(date)+log >> /root/shell_pracice_3.log
   fi
-    sleep 3s
+    sleep 10s
 done
