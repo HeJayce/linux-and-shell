@@ -49,13 +49,13 @@ while true; do
        echo $(date)+cpu >> shell_pracice_3.log
   fi
     if [ $mem = 'true' ]; then
-       echo $(date)+mem >> shell_pracice_3.log
+       echo $(date)+mem >> /root/shell_pracice_3.log
   fi
       if [ $disk = 'true' ]; then
-         echo $(date)+mem >> shell_pracice_3.log
+         echo $(date)+mem >> /root/shell_pracice_3.log
     fi
       if [ $log = 'true' ]; then
-         echo $(date)+log >> shell_pracice_3.log
+         echo $(date)+log >> /root/shell_pracice_3.log
   fi
     sleep 3s
 done
