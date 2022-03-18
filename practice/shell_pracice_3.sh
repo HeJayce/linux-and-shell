@@ -2,7 +2,7 @@
 #尝试做一个例检的脚本，每分钟调用一次，检查当前总cpu不高于50（可调整），内存不高于50（可调整），每个挂载的磁盘占用不高于80（可调整），系统日志没有error或者warn关键字（可配）。这四个项目中任意一个合格则打印时间，检查内容合格、如果不合格则打印时间检查内容不合格。
 
 cpu() {
-    cpuinfo=$(top -n1 -b | grep "%Cpu" | awk '{print $4}' | awk 'BEGIN{FS="."}{print $1}')
+    cpuinfo=$(top -n 1 -b | grep "%Cpu" | awk '{print $4}' | awk 'BEGIN{FS="."}{print $1}')
     # cpuinfo2=$(echo ${cpuinfo}|awk 'BEGIN{FS="."}{print $1}')
     if [ $cpuinfo -le 50 ]; then
        echo true
@@ -10,6 +10,8 @@ cpu() {
        echo false
   fi
 }
+
+
 mem() {
     meminfo=$(free | grep Mem | awk '{print $3/$2 * 100.0}' | awk 'BEGIN{FS="."}{print $1}')
     if [ $meminfo -le 50 ]; then
@@ -27,10 +29,11 @@ mem() {
 #        echo false
 #   fi
 # }
+
 log() {
-  filename="catalina.2021-11-15.out"
   error=$(grep -iw "error" $filename)
   warn=$(grep -iw "warn" $filename)
+  filename="catalina.2021-11-15.out"
   if [ -z "${error}" ] && [ -z "${warn}" ]; then
     echo true
   else
@@ -38,8 +41,8 @@ log() {
   fi
 }
 disk() {
-    disk=$(vmstat | grep -v procs | grep -v sy | awk '{print $14}')
-    if [ ${disk} -le 50 ]; then
+    disk=$(vmstat | grep -v procs | grep -v sy | awk '{print $15}')
+    if [ ${disk} -ge 50 ]; then
        echo true
   else
        echo false
@@ -47,34 +50,28 @@ disk() {
 }
 
 while true; do
-    cpu=$(cpu)
-    mem=$(mem)
-    log=$(log)
-    disk=$(disk)
-    echo cpu=${cpu}
-    echo mem=${mem}
-    echo log=${log}
-    echo dick=${disk}
+    cpu=$(cpu);mem=$(mem);log=$(log);disk=$(disk)
+    echo -e  "cpu=${cpu} \nmem=${mem} \nlog=${log} \ndick=${disk}"
     # log
     if [ $cpu = 'true' ]; then
-       echo $(date)+cpu合格 >> /root/shell_pracice_3.log
+       echo $(date)+cpu合格 >> shell_pracice_3.log
        else
-       echo $(date)+cpu不合格 >> /root/shell_pracice_3.log
+       echo $(date)+cpu不合格 >> shell_pracice_3.log
   fi
     if [ $mem = 'true' ]; then
-       echo $(date)+内存合格 >> /root/shell_pracice_3.log
+       echo $(date)+内存合格 >> shell_pracice_3.log
        else
-       echo $(date)+内存不合格 >> /root/shell_pracice_3.log
+       echo $(date)+内存不合格 >> shell_pracice_3.log
   fi
       if [ $disk = 'true' ]; then
-         echo $(date)+磁盘合格 >> /root/shell_pracice_3.log
+         echo $(date)+磁盘合格 >> shell_pracice_3.log
          else
-       echo $(date)+磁盘不合格 >> /root/shell_pracice_3.log
+       echo $(date)+磁盘不合格 >> shell_pracice_3.log
   fi
       if [ $log = 'true' ]; then
-         echo $(date)+日志合格 >> /root/shell_pracice_3.log
+         echo $(date)+日志合格 >> shell_pracice_3.log
          else
-       echo $(date)+日志不合格 >> /root/shell_pracice_3.log
+       echo $(date)+日志不合格 >> shell_pracice_3.log
   fi
     sleep 10s
 done

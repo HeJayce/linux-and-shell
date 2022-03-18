@@ -8,6 +8,6 @@
 
 while true; do
     top -n 1 -b >> toplog_$(date +%Y%m%d%H%M).log
-    sleep 5s 
+    sleep 1s 
 done
 
