@@ -1,0 +1,17 @@
+2021-11-15 00:30:00,010 INFO  - 巡查管控定时任务开始...... [NewStarLitigantAutoCheckRuleTask.java.23] 
+2021-11-15 00:30:00,018 INFO  - 主体等级统计定时任务开始...... [NewStarLitigantAutoCheckRuleTask.java.30] 
+2021-11-15 01:00:00,009 INFO  - 
+*******  开始考勤统计   当前时间：2021-11-15 01:00:00 ******* [YqCheckStatManagerImpl.java.1119] 
+2021-11-15 01:00:00,022 INFO  - 考勤统计时间段为[2021-11-14至2021-11-14] [YqCheckStatManagerImpl.java.1136] 
+2021-11-15 01:00:00,022 INFO  - 公司个数：1 [YqCheckStatManagerImpl.java.1137] 
+2021-11-15 01:00:00,023 INFO  - --------   开始考勤统计-公司:2 ------- [YqCheckStatManagerImpl.java.1141] 
+2021-11-15 01:00:00,026 INFO  - -------   结束考勤统计-公司:2   ------- [YqCheckStatManagerImpl.java.1175] 
+2021-11-15 01:00:00,026 INFO  - ***********  结束考勤统计  ************
+2021-11-15 05:57:44,433 INFO  - 事件 4b154f53-f776-4152-a8a0-fa920fd27c36.jpg 附件下载成功!  [HikDockingManagerImpl.java.583] 
+2021-11-15 05:57:44,642 INFO  - Mon Nov 15 05:57:44 GMT+08:00 2021[CellCodeManager]获取地图兴趣点开始！ [RecInfoManagerImpl.java.134] 
+2021-11-15 05:57:44,670 ERROR - Mon Nov 15 05:57:44 GMT+08:00 2021[CellCodeManager]获取地图兴趣点出错！ [RecInfoManagerImpl.java.167] 
+2021-11-15 05:57:48,997 INFO  - {"code":"200","data":"","message":"处理成功","success":true} [PushOtherRecUtils.java.210] 
+2021-11-15 06:12:49,274 WARN  - 未开启发送短信！  [HikDockingManagerImpl.java.254] 
+2021-11-15 06:12:50,801 INFO  - 事件 94858c13-049f-49c5-b2a2-aae38065ad45.jpg 附件下载成功!  [HikDockingManagerImpl.java.583] 
+2021-11-15 06:12:50,979 INFO  - Mon Nov 15 06:12:50 GMT+08:00 2021[CellCodeManager]获取地图兴趣点开始！ [RecInfoManagerImpl.java.134] 
+2021-11-15 06:12:51,009 ERROR - Mon Nov 15 06:12:51 GMT+08:00 2021[CellCodeManager]获取地图兴趣点出错！ [RecInfoManagerImpl.java.167] 
