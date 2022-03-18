@@ -1,4 +1,6 @@
 #!/bin/bash
+#尝试做一个例检的脚本，每分钟调用一次，检查当前总cpu不高于50（可调整），内存不高于50（可调整），每个挂载的磁盘占用不高于80（可调整），系统日志没有error或者warn关键字（可配）。这四个项目中任意一个合格则打印时间，检查内容合格、如果不合格则打印时间检查内容不合格。
+
 cpu() {
     cpuinfo=$(top -n1 -b | grep "%Cpu" | awk '{print $4}' | awk 'BEGIN{FS="."}{print $1}')
     # cpuinfo2=$(echo ${cpuinfo}|awk 'BEGIN{FS="."}{print $1}')
