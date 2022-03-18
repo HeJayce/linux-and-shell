@@ -55,16 +55,24 @@ while true; do
     echo dick=${disk}
     # log
     if [ $cpu = 'true' ]; then
-       echo $(date)+cpu >> shell_pracice_3.log
+       echo $(date)+cpu合格 >> /root/shell_pracice_3.log
+       else
+       echo $(date)+cpu不合格 >> /root/shell_pracice_3.log
   fi
     if [ $mem = 'true' ]; then
-       echo $(date)+mem >> /root/shell_pracice_3.log
+       echo $(date)+内存合格 >> /root/shell_pracice_3.log
+       else
+       echo $(date)+内存不合格 >> /root/shell_pracice_3.log
   fi
       if [ $disk = 'true' ]; then
-         echo $(date)+mem >> /root/shell_pracice_3.log
+         echo $(date)+磁盘合格 >> /root/shell_pracice_3.log
+         else
+       echo $(date)+磁盘不合格 >> /root/shell_pracice_3.log
   fi
       if [ $log = 'true' ]; then
-         echo $(date)+log >> /root/shell_pracice_3.log
+         echo $(date)+日志合格 >> /root/shell_pracice_3.log
+         else
+       echo $(date)+日志不合格 >> /root/shell_pracice_3.log
   fi
     sleep 10s
 done
