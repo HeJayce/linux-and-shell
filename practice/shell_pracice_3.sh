@@ -17,22 +17,31 @@ mem() {
   fi
 }
 
+# log() {
+#     loginfo=$(ls -l /var/log/nginx/error.log | awk '{print $5}')
+#    if [ $loginfo -eq 0 ]; then
+#        echo true
+#   else
+#        echo false
+#   fi
+# }
 log() {
-    loginfo=$(ls -l /var/log/nginx/error.log | awk '{print $5}')
-   if [ $loginfo -eq 0 ]; then
+  filename="catalina.2021-11-15.out"
+  error=$(grep -iw "error" $filename)
+  warn=$(grep -iw "warn" $filename)
+  if [ -z "${error}" ] && [ -z "${warn}" ]; then
+    echo true
+  else
+    echo false
+  fi
+}
+disk() {
+    disk=$(vmstat | grep -v procs | grep -v sy | awk '{print $14}')
+    if [ ${disk} -le 50 ]; then
        echo true
   else
        echo false
   fi
-
-}
-disk(){
-    disk=$(vmstat|grep -v procs|grep -v sy |awk '{print $14}')
-    if [ ${disk} -le 50 ];then
-       echo true
-    else
-       echo false
-       fi
 }
 
 while true; do
@@ -53,7 +62,7 @@ while true; do
   fi
       if [ $disk = 'true' ]; then
          echo $(date)+mem >> /root/shell_pracice_3.log
-    fi
+  fi
       if [ $log = 'true' ]; then
          echo $(date)+log >> /root/shell_pracice_3.log
   fi
