@@ -1175,8 +1175,8 @@ flag标记如下：
   [address]d
   sed 'd' a.txt		 #什么也不输出，证明成了空文件
   sed '3d' a.txt		 #删除第三行
-  sed '2,3d' a.txt	 #删除第二行和第三行
-  sed '/1/,/3/d' a.txt #删除第二行到第三行[1-3]
+  sed '2,3d' a.txt	 
+  sed '/1/,/3/d' a.txt 
   sed '3,$d' a.txt     #删除第三行之后所有的内容
   ```
 

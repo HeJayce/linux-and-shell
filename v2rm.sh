@@ -12,6 +12,8 @@ elif [ $choose == 3 ]; then
 elif [ $choose == 4 ]; then
     git config --global http.proxy http://127.0.0.1:10809
     git config --global https.proxy http://127.0.0.1:10809
+    # export https_proxy="127.0.0.1:10809"
+    # export http_proxy="127.0.0.1:10809"
 fi
    
         

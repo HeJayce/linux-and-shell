@@ -1094,3 +1094,44 @@ stat oss.sh |grep Size|awk '{print $2}'
 
 
 
+
+
+## 数据库操作
+
+### mysql
+
+#### 连接方式
+
+```shell
+mysql -uroot -p'password'
+```
+
+password中填写数据库密码，其中单引号为了防止密码中的特殊符号影响，如果没有，可以去掉，-p后面写密码
+
+#### 数据库操作方式
+
+直接操作：
+
+```shell
+mysql -uroot -e "show databases;" -B -N
+```
+
+其中-B参数取消了外部的竖线边框，-N参数出去了表头Database
+
+![image-20220322142447524](https://jaycehe.oss-cn-hangzhou.aliyuncs.com/markdown/202203221424613.png)
+
+指定数据库查询：
+
+```shell
+mysql -uroot database_name -e "select * from table_name;" -B -N
+```
+
+```shell
+mysql -uroot database_name -e "use mysql;select * from table_name;" -B -N
+```
+
+```sh
+mysql -uroot database_name -e "select * from mysql.user;" -B -N
+```
+
+### redis
