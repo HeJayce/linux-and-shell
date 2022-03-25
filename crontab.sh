@@ -5,7 +5,7 @@ setAutoScript(){
     vim /var/spool/cron/$user
 }   
 echo "crontab 1启动 2停止 3重载 4重启"
-echo "crontab 5 设置脚本"
+echo "crontab 5设置脚本 6查看日志"
 read choose
 case "${choose}" in
     1)
@@ -22,6 +22,9 @@ case "${choose}" in
     ;;
     5)
         setAutoScript
+    ;;
+    6)
+        tail -f -n 200 /var/log/cron
     ;;
 esac
 
