@@ -1,6 +1,6 @@
 #!/bin/bash
 while true; do
-    jenkins_status=$(ps -ef | grep jenkins | grep -v grep)
+    jenkins_status=$(ps -ef | grep jenkins | grep -v grep|grep -v jenkins_watchdog)
     if [ ! "$jenkins_status" ]; then
     echo $(date +%Y%m%d%H%M%S)  >> /root/log/jenkins.log
     systemctl restart jenkins
