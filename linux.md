@@ -648,7 +648,7 @@ chmod (-R) 765 start.sh
 
 `>>`追加
 
-`history`
+### `history`
 
 记录历史操作
 
@@ -993,6 +993,16 @@ KiB Swap:        0 total,        0 free,        0 used.    79840 avail Mem
 ```
 iconv -c -t utf-8 test.txt -o tmp.txt
 ```
+
+
+
+### `tee`
+
+既可以重定向到文件，还可以建立副本传向后续的stdin
+
+（即打印输出又写入文件）
+
+-a 选项为追加内容，类似>>
 
 
 
