@@ -60,9 +60,55 @@
 
 挂载目录类似于Windows的盘符
 
+### 文件传输
+
+#### scp
+
+```sh
+scp [-1246BCpqrv] [-c cipher] [-F ssh_config] [-i identity_file]
+[-l limit] [-o ssh_option] [-P port] [-S program]
+[[user@]host1:]file1 [...] [[user@]host2:]file2
+```
+
+简易
+
+```sh
+scp file root@ip:folder 
+#或者 
+scp file root@ip:file 
+#或者 
+scp file ip:folder 
+#或者 
+scp file ip:file 
+```
+
+指定了远程的目录，文件名字不变，指定文件名，则传输后重命名
+
+传输文件夹使用 -r 参数，文件夹会传输到指定的目录下，而不是重命名
+
+例如
+
+```sh
+scp -r /root/shell 172.0.0.1:/root/linux/ 
+```
+
+将本地 shell目录复制到远程 linux目录下 `/root/linux/shell`
+
+相关参数：
+
+`-P`   指定端口号
+
+`-i`  使用密钥文件登录
+
+```
+scp  -i key.pem  /root/file  ip:dic 
+```
+
+
+
 ------
 
-## 终端
+## 终端	
 
 1. 物理终端
 
@@ -1074,11 +1120,29 @@ grep -C 3 bash oss.sh
 
 ![image-20220111163437416](https://jaycehe.oss-cn-hangzhou.aliyuncs.com/markdown/202201111634820.png)
 
+总结：
+
+`-A`选项，是 After 的缩写**查看后面**
+
+`-B`选项，是 Before 的缩写查看前面
+
+`-C`选项，它是`-A`和`-B`选项的合体**两边都看**
+
+#### zgrep
+
+zgrep 和 grep 用法类似，不过操作的对象是压缩的内容。支持 bzip2，gzip，lzip， xz 等等。
+
+```sh
+zgrep "/api" access_log.gz access_log_1.gz
+```
 
 
-总结：`-A`选项，是 After 的缩写**查看后面**，`-B`选项，是 Before 的缩写查看前面，`-C`选项，它是`-A`和`-B`选项的合体**两边都看**
 
-#### 正则表达式
+
+
+
+
+
 
 ------
 
@@ -1126,7 +1190,7 @@ OFS：输出分隔符
 
 **多个分隔符：FS=“[,.]”  先以`,`分再以`.`分**
 
-```
+```sh
 awk 'BEGIN{FS="|";OFS="|"}{print $1,$2,$3,$4}' informix.txt
 ```
 
