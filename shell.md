@@ -970,7 +970,10 @@ expr length "this is a test"14
 例如：
 
 ```sh
-#val=`expr 2 + 2`val=$(expr 2 + 2)echo "2+2=${val}"
+#
+val=`expr 2 + 2`
+val=$(expr 2 + 2)
+echo "2+2=${val}"
 ```
 
 

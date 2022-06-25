@@ -1089,6 +1089,35 @@ comm a.txt b.txt
 
 
 
+### `curl`
+
+支持http https ftp等众多请求
+
+直接curl + 地址 ，可输出网页源码
+
+保存网页源码：
+
+```shell
+curl -o linux.html https://jayce.icu
+curl https://jayce.icu >> jayce.html
+```
+
+下载网页文件（不如用wget）
+
+```
+curl -O https://jayce.icu/hello.sh
+```
+
+使用代理服务器：
+
+```
+curl -x 127.0.0.1:10809 https://jayce.icu
+```
+
+
+
+
+
 ## Linux三剑客	
 
 ### `grep`
