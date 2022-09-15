@@ -1,4 +1,8 @@
-[TOC]
+---
+title: shell
+date: 2022-06-29 09:59:41
+tags:
+---
 
 # shell
 
@@ -243,6 +247,49 @@ cat a* |tee  error.log
 ```shell
 filename="jayce.txt"
 ```
+
+### 读取输入
+
+`read`
+
+类似于python中的input
+
+读取n个字符存入变量
+
+```shell
+read -n 3 number 
+```
+
+读取无回显输入（密码）
+
+```sh
+read -s password
+```
+
+读取显示提示信息
+
+```sh
+read -p '请输入' var
+```
+
+读取一定时间内的输入
+
+```sh
+read -t 10 var
+#单位秒
+```
+
+用特定的定界符作为输入行的结束
+
+```sh
+# read -d delim_char var
+read -d ":" var
+hello:   #hello 存入var
+```
+
+
+
+
 
 ### 定义命令
 
